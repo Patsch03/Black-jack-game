@@ -1,8 +1,8 @@
 let handCards = 2;
+
 class card{
     suit = "null";
     value =  0;
-    color = "red";
 
     constructor(){
         let suitPick = Math.random();
@@ -62,13 +62,12 @@ let playerHand = [];
 
 
 function gameStart(){
-
     console.log("Player hand");
 
     playerHand[0] = playerCard1;
     playerHand[1] = playerCard2;
-    // console.log(playerCard1.getValue());
 
+    dealerHand[0] = dealerCard1;
     dealerHand[1] = dealerCard2;
 
     console.log(playerCard1.suit + " " + playerCard1.value);
@@ -80,13 +79,19 @@ function gameStart(){
 
     console.log(dealerCard2.suit + " " + dealerCard2.value);
 
-
 }
+
+const hitBut = document.getElementById('Hitti');
+hitBut.addEventListener('click', function(){
+    hit();
+}); // checks for button being hit 
+
 
 
 function hit(){
     playerHand[handCards] = new card;
     handCards += 1;
+    console.log(playerHandValue()); // prints new value with new card added
 
 }
 
@@ -119,7 +124,7 @@ function dealerHandValue(){
 
 gameStart();
 
-hit();
+// hit();
 
 console.log(playerHand);
 
