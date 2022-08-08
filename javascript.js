@@ -103,7 +103,6 @@ function hit(){
     if(playerHandValue() > 21){
         buttonStop();
         console.log("player busts"); //temporary
-        dealerPlay();
     }else if(playerHandValue() == 21){
         stand();
     }
@@ -122,15 +121,23 @@ function buttonStop(){
 function stand(){
     buttonStop();
     // checkWin();
-    dealerPlay();
+    if(playerHandValue() > 21){
+        console.log("Player loses");
+    }else{
+        dealerPlay();
+    }
 }
 
 function checkWin(){
-    if((21 - playerHandValue()) < (21 - dealerHandValue())){
+    if(playerHandValue() > 21){
+        console.log("Player loses!")
+    }else if((21 - playerHandValue()) < (21 - dealerHandValue())){
         console.log("Player wins");
     }else if((21 - playerHandValue()) > (21 - dealerHandValue())){
         console.log("Dealer won");
     }
+    
+    
 }
 
 function double(){
@@ -153,12 +160,6 @@ function dealerHandValue(){
     }
 
     return sum;
-}
-
-function dealerPlay(){
-    if (dealerHandValue < 16){
-        dealerHit();
-    }
 }
 
 function dealerPlay(){
