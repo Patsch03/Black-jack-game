@@ -1,4 +1,5 @@
 let handCards = 2;
+let dealerCards = 2;
 
 class card{
     suit = "null";
@@ -47,6 +48,7 @@ class card{
         return this.value;
     }
 }
+
 let playerCard1 = new card();
 let playerCard2 = new card();
 
@@ -73,15 +75,20 @@ function gameStart(){
     console.log(playerCard1.suit + " " + playerCard1.value);
     
     console.log(playerCard2.suit + " " + playerCard2.value);
+    console.log(playerHandValue());
 
     console.log("Dealer hand");
     console.log(dealerCard1.suit + " " + dealerCard1.value);
 
     console.log(dealerCard2.suit + " " + dealerCard2.value);
+    console.log(dealerHandValue());
 
 }
 
-const hitBut = document.getElementById('Hitti');
+const standBut = document.getElementById("Stand");
+standBut.addEventListener('click', stand);
+
+const hitBut = document.getElementById('Hit');
 hitBut.addEventListener('click', hit);// checks for button being hit 
 
 
@@ -96,18 +103,34 @@ function hit(){
     if(playerHandValue() > 21){
         buttonStop();
         console.log("player busts"); //temporary
+        dealerPlay();
+    }else if(playerHandValue() == 21){
+        stand();
     }
+    
 }
 
 function buttonStop(){
-    if(playerHandValue() > 21){
-        const hitButR = document.getElementById("Hitti");
-        hitButR.removeEventListener('click', hit);
-    }    
+    const hitButR = document.getElementById("Hit");
+    hitButR.removeEventListener('click', hit);
+    
+    const standButR = document.getElementById("Stand");
+    standButR.removeEventListener('click', stand);
+    
 }
 
 function stand(){
+    buttonStop();
+    // checkWin();
+    dealerPlay();
+}
 
+function checkWin(){
+    if((21 - playerHandValue()) < (21 - dealerHandValue())){
+        console.log("Player wins");
+    }else if((21 - playerHandValue()) > (21 - dealerHandValue())){
+        console.log("Dealer won");
+    }
 }
 
 function double(){
@@ -132,14 +155,33 @@ function dealerHandValue(){
     return sum;
 }
 
+function dealerPlay(){
+    if (dealerHandValue < 16){
+        dealerHit();
+    }
+}
 
-gameStart();
+function dealerPlay(){
+    while(dealerHandValue() < 16){
+        dealerHand[dealerCards] = new card;
+        console.log(dealerHand[dealerCards].suit + " " + dealerHand[dealerCards].value);
+        dealerHandValue();
+        console.log("Dealer hand value " + dealerHandValue());
+        dealerCards += 1;
+    }
+    checkWin();
+}
 
-console.log(playerHand);
+function gamePlay(){
+    gameStart();
 
-console.log(playerHandValue());
+}
 
-console.log(dealerHandValue());
+gamePlay();
+// checkWin();
+
+
+
 
 
 
