@@ -82,17 +82,28 @@ function gameStart(){
 }
 
 const hitBut = document.getElementById('Hitti');
-hitBut.addEventListener('click', function(){
-    hit();
-}); // checks for button being hit 
+hitBut.addEventListener('click', hit);// checks for button being hit 
+
+
 
 
 
 function hit(){
-    playerHand[handCards] = new card;
-    handCards += 1;
-    console.log(playerHandValue()); // prints new value with new card added
+    playerHand[handCards] = new card; // adds new card to player hand array
+    console.log(playerHand[handCards].suit + " " + playerHand[handCards].value) // shows player card
+    console.log("New player hand value" + " " + playerHandValue()); // prints new value with new card added
+    handCards += 1; // increases the index at playerHand so if player hits again it has proper memory allocated
+    if(playerHandValue() > 21){
+        buttonStop();
+        console.log("player busts"); //temporary
+    }
+}
 
+function buttonStop(){
+    if(playerHandValue() > 21){
+        const hitButR = document.getElementById("Hitti");
+        hitButR.removeEventListener('click', hit);
+    }    
 }
 
 function stand(){
@@ -123,8 +134,6 @@ function dealerHandValue(){
 
 
 gameStart();
-
-// hit();
 
 console.log(playerHand);
 
