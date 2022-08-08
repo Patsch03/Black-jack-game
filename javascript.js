@@ -1,9 +1,10 @@
+let handCards = 2;
 class card{
     suit = "null";
     value =  0;
     color = "red";
 
-    randomSuit(){
+    constructor(){
         let suitPick = Math.random();
         if(suitPick <= 0.25){
             this.suit = "spade";
@@ -14,12 +15,10 @@ class card{
         }else if(suitPick <= 1){
             this.suit = "diamond";
         }
-    }
 
-    randomValue(){
         let valuePick = Math.random();
         if(valuePick <= 0.07692307692){
-            this.value = 1;
+            this.value = 1; // ace needs implementation
         }else if(valuePick <= 0.15384615384){
             this.value = 2;
         }else if(valuePick <= 0.23076923076){
@@ -36,11 +35,25 @@ class card{
             this.value = 8;
         }else if(valuePick <= 0.69230769228){
             this.value = 9;
-        }else if(valuePick <=1){
+        }else if(valuePick <= 1){
             this.value = 10; //includes jack queen king 
         }
+        
+    }
+
+
+
+    getValue(){
+        return this.value;
     }
 }
+let playerCard1 = new card();
+let playerCard2 = new card();
+
+
+let dealerCard1 = new card();
+let dealerCard2 = new card();
+
 
 
 
@@ -49,44 +62,71 @@ let playerHand = [];
 
 
 function gameStart(){
-    let playerCard1 = new card;
-    let playerCard2 = new card;
 
-    let dealerCard1 = new card;
-    let dealerCard2 = new card;
+    console.log("Player hand");
 
-    playerCard1.randomSuit();
-    playerCard2.randomSuit();
-    playerCard1.randomValue();
-    playerCard2.randomValue();
+    playerHand[0] = playerCard1;
+    playerHand[1] = playerCard2;
+    // console.log(playerCard1.getValue());
 
-    dealerCard1.randomSuit();
-    dealerCard2.randomSuit();
-    dealerCard1.randomValue();
-    dealerCard2.randomValue();
+    dealerHand[1] = dealerCard2;
 
-    console.log(playerCard1.suit);
-    console.log(playerCard1.value);
+    console.log(playerCard1.suit + " " + playerCard1.value);
+    
+    console.log(playerCard2.suit + " " + playerCard2.value);
 
-    console.log(playerCard2.suit);
-    console.log(playerCard2.value);
+    console.log("Dealer hand");
+    console.log(dealerCard1.suit + " " + dealerCard1.value);
 
-    console.log(dealerCard1.suit);
-    console.log(dealerCard1.value);
-
-    console.log(dealerCard2.suit);
-    console.log(dealerCard2.value);
+    console.log(dealerCard2.suit + " " + dealerCard2.value);
 
 
 }
 
 
-
-
-function randomColor(){
+function hit(){
+    playerHand[handCards] = new card;
+    handCards += 1;
 
 }
+
+function stand(){
+
+}
+
+function double(){
+
+}
+
+function playerHandValue(){
+    let sum = 0;
+    for(let i = 0; i < playerHand.length; i++){
+        sum += playerHand[i].value;
+    }
+
+    return sum;
+}
+
+function dealerHandValue(){
+    let sum = 0;
+    for(let i = 0; i < dealerHand.length; i++){
+        sum += dealerHand[i].value;
+    }
+
+    return sum;
+}
+
 
 gameStart();
 
-console.log("hello");
+hit();
+
+console.log(playerHand);
+
+console.log(playerHandValue());
+
+console.log(dealerHandValue());
+
+
+
+
