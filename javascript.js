@@ -1,10 +1,13 @@
 let handCards = 2;
 let dealerCards = 2;
 
+
+//CARD CLASS CREATS A CARD THAT HAS A RANDOM SUIT AND RANDOM VALUE 1-10
 class card{
     suit = "null";
     value =  0;
-
+    ace = 0;
+// MAKES A CONSTRUCTOR THAT ADDS THE RANDOM SUIT AND VALUES TO THE OBJECT.
     constructor(){
         let suitPick = Math.random();
         if(suitPick <= 0.25){
@@ -42,8 +45,6 @@ class card{
         
     }
 
-
-
     getValue(){
         return this.value;
     }
@@ -52,17 +53,13 @@ class card{
 let playerCard1 = new card();
 let playerCard2 = new card();
 
-
 let dealerCard1 = new card();
 let dealerCard2 = new card();
-
-
-
 
 let dealerHand = [];
 let playerHand = [];
 
-
+//ADDS CARD 1 AND CARD 2 INTO PLAYER AND DEALER HAND
 function gameStart(){
     console.log("Player hand");
 
@@ -85,16 +82,14 @@ function gameStart(){
 
 }
 
+//ACTIVATES BUTTONS 
 const standBut = document.getElementById("Stand");
 standBut.addEventListener('click', stand);
 
 const hitBut = document.getElementById('Hit');
 hitBut.addEventListener('click', hit);// checks for button being hit 
 
-
-
-
-
+//ADDS CARD TO PLAYER HAND AND CONSOLE LOGS IT, CHECKS TOO SEE IF THE PLAYERHAND BUSTS OR IF PLAYERHAND = 21 AND REMOVES EVENTLISTENER ON BUTTONS
 function hit(){
     playerHand[handCards] = new card; // adds new card to player hand array
     console.log(playerHand[handCards].suit + " " + playerHand[handCards].value) // shows player card
@@ -109,6 +104,7 @@ function hit(){
     
 }
 
+//LOGIC FOR STOPPING BUTTONS
 function buttonStop(){
     const hitButR = document.getElementById("Hit");
     hitButR.removeEventListener('click', hit);
@@ -118,6 +114,7 @@ function buttonStop(){
     
 }
 
+//STAND LOGIC, ALSO STARTS DEALER "AI"
 function stand(){
     buttonStop();
     // checkWin();
@@ -128,16 +125,39 @@ function stand(){
     }
 }
 
+//CHECKS TO SEE WHO WON
 function checkWin(){
-    if(playerHandValue() > 21){
-        console.log("Player loses!")
-    }else if((21 - playerHandValue()) < (21 - dealerHandValue())){
-        console.log("Player wins");
-    }else if((21 - playerHandValue()) > (21 - dealerHandValue())){
-        console.log("Dealer won");
-    }else if(playerHandValue() == dealerHandValue()){
-        console.log("Push");
+    if(playerHandValue().toString().includes("/")){ 
+        let thing = playerHandValue();
+        const afterS = thing.substring(thing.indexOf("/") + 2)
+        let aceVal = parseInt(thing);
+        console.log(aceVal);
+        if(aceVal > 21){
+            console.log("Player loses!")
+        }else if(dealerHandValue() > 21){
+            console.log("Dealer busts, player wins!");           //change win logic to check if both numbers aceVal and first number
+        }else if((21 - aceVal) > (21 - dealerHandValue())){      //test case where it didnt work was 4/14 (player hand) vs dealer 17
+            console.log("Player wins!");                         //
+        }else if((21 - aceVal) < (21 - dealerHandValue())){
+            console.log("Dealer won!");
+        }else if(aceVal == dealerHandValue()){
+            console.log("Push");
+        }
+    }else{
+        if(playerHandValue() > 21){
+            console.log("Player loses!")
+        }else if(dealerHandValue() > 21){
+            console.log("Dealer busts, player wins!");
+        }else if((21 - playerHandValue()) < (21 - dealerHandValue())){
+            console.log("Player wins!");
+        }else if((21 - playerHandValue()) > (21 - dealerHandValue())){
+            console.log("Dealer won!");
+        }else if(playerHandValue() == dealerHandValue()){
+            console.log("Push");
+        }
     }
+
+
     
     
 }
@@ -146,15 +166,39 @@ function double(){
 
 }
 
+//RETURNS THE VALUE OF THE PLAYERS CARDS
 function playerHandValue(){
     let sum = 0;
+    let sumAce = 0;
+    let bool = false;
     for(let i = 0; i < playerHand.length; i++){
-        sum += playerHand[i].value;
+        if(playerHand[i].value == 1){
+            sumAce += 11;
+            sum += 1;
+        }else{
+            sum += playerHand[i].value;
+            sumAce += playerHand[i].value;
+        }
+        
     }
-
-    return sum;
+//LOGIC FOR ACE IMPLEMENTATION
+    for(let i = 0; i < playerHand.length; i++){
+        if(playerHand[i].value == 1){
+            bool = true;
+        }
+    }
+    if(bool){
+        if(sumAce > 21){
+            return sum;
+        }
+        return sum + " / " + sumAce;
+    }else{
+        return sum;
+    }
+    
 }
 
+//RETURNS THE VALUE OF THE DEALERS HAND
 function dealerHandValue(){
     let sum = 0;
     for(let i = 0; i < dealerHand.length; i++){
@@ -164,6 +208,7 @@ function dealerHandValue(){
     return sum;
 }
 
+//LOGIC FOR DEALER "AI"
 function dealerPlay(){
     while(dealerHandValue() <= 16){
         dealerHand[dealerCards] = new card;
@@ -175,16 +220,13 @@ function dealerPlay(){
     checkWin();
 }
 
+//INTIIALIZES FIRST TWO CARDS
 function gamePlay(){
     gameStart();
+    
 
 }
 
+//RUNS INITIALIZATION.
 gamePlay();
-
-
-
-
-
-
 
