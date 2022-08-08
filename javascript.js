@@ -135,6 +135,8 @@ function checkWin(){
         console.log("Player wins");
     }else if((21 - playerHandValue()) > (21 - dealerHandValue())){
         console.log("Dealer won");
+    }else if(playerHandValue() == dealerHandValue()){
+        console.log("Push");
     }
     
     
@@ -163,7 +165,7 @@ function dealerHandValue(){
 }
 
 function dealerPlay(){
-    while(dealerHandValue() < 16){
+    while(dealerHandValue() <= 16){
         dealerHand[dealerCards] = new card;
         console.log(dealerHand[dealerCards].suit + " " + dealerHand[dealerCards].value);
         dealerHandValue();
@@ -179,7 +181,6 @@ function gamePlay(){
 }
 
 gamePlay();
-// checkWin();
 
 
 
