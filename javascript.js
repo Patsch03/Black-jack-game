@@ -130,15 +130,14 @@ function checkWin(){
     if(playerHandValue().toString().includes("/")){ 
         let thing = playerHandValue();
         const afterS = thing.substring(thing.indexOf("/") + 2)
-        let aceVal = parseInt(thing);
-        console.log(aceVal);
+        let aceVal = parseInt(afterS);
         if(aceVal > 21){
             console.log("Player loses!")
         }else if(dealerHandValue() > 21){
-            console.log("Dealer busts, player wins!");           //change win logic to check if both numbers aceVal and first number
-        }else if((21 - aceVal) > (21 - dealerHandValue())){      //test case where it didnt work was 4/14 (player hand) vs dealer 17
-            console.log("Player wins!");                         //
-        }else if((21 - aceVal) < (21 - dealerHandValue())){
+            console.log("Dealer busts, player wins!");           
+        }else if((21 - aceVal) < (21 - dealerHandValue())){      
+            console.log("Player wins!");                         
+        }else if((21 - aceVal) > (21 - dealerHandValue())){
             console.log("Dealer won!");
         }else if(aceVal == dealerHandValue()){
             console.log("Push");
