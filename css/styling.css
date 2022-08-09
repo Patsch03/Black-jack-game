@@ -1,0 +1,69 @@
+.container{
+    border: 3px solid green;
+    position: relative;
+    height: 950px;
+    background-color: mediumseagreen;
+}
+
+.button{
+        margin: 20px;
+        position: relative;
+        top: 45%;
+        left: 43%;
+}
+
+
+
+.pCard1{
+    border: 3px solid black;
+    position: relative;
+    height: 350px;
+    width: 300px;
+    top: 55%;
+    left: 30%;
+    overflow: auto;
+}
+
+.pCard1Img{
+    position: absolute;
+    height: 350px;
+    width: 300px;
+
+}
+
+.pCard2{
+    border: 3px solid black;
+    position: relative;
+    height: 350px;
+    width: 300px;
+    top: 17.3%;
+    left: 55%;
+    overflow: auto;
+
+}
+
+.dCard1{
+    border: 3px solid black;
+    position: relative;
+    height: 350px;
+    width: 300px;
+    top: -77%;
+    left: 55%;
+}
+
+.dCard2{
+    border: 3px solid black;
+    position: relative;
+    height: 350px;
+    width: 300px;
+    top: -114.5%;
+    left: 30%;
+}
+
+.suits{
+    background-color: blue;
+    position: relative;
+    height: 50px;
+    width: 50px;
+    margin: 50px 20px 20px 20px;
+}
