@@ -2,6 +2,7 @@ let handCards = 2;
 let dealerCards = 2;
 
 
+
 //CARD CLASS CREATS A CARD THAT HAS A RANDOM SUIT AND RANDOM VALUE 1-10
 class card{
     suit = "null";
@@ -64,6 +65,7 @@ function gameStart(){
     console.log("Player hand");
 
     playerHand[0] = playerCard1;
+    revealCard(playerCard1);
     playerHand[1] = playerCard2;
 
     dealerHand[0] = dealerCard1;
@@ -316,6 +318,13 @@ function gamePlay(){
 
 }
 
+function revealCard(card){
+    if(card.value == 1 && card.suit == "spade"){
+        document.getElementById("test").src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Aceofspades.svg/1200px-Aceofspades.svg.png";
+    }
+}
+
 //RUNS INITIALIZATION.
 gamePlay();
+
 

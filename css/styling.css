@@ -14,7 +14,7 @@
 
 
 
-.pCard1{
+#pCard1{
     border: 3px solid black;
     position: relative;
     height: 350px;
@@ -31,18 +31,17 @@
 
 }
 
-.pCard2{
+#pCard2{
     border: 3px solid black;
     position: relative;
     height: 350px;
     width: 300px;
     top: 17.3%;
     left: 55%;
-    overflow: auto;
 
 }
 
-.dCard1{
+#dCard1{
     border: 3px solid black;
     position: relative;
     height: 350px;
@@ -51,7 +50,7 @@
     left: 55%;
 }
 
-.dCard2{
+#dCard2{
     border: 3px solid black;
     position: relative;
     height: 350px;
@@ -67,3 +66,12 @@
     width: 50px;
     margin: 50px 20px 20px 20px;
 }
+
+.column{
+    position: relative;
+    background-color: red;
+    display: inline-block;
+    margin: 30px 30px 30px 30px;
+}
+
+
