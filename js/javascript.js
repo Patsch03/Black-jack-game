@@ -65,11 +65,17 @@ function gameStart(){
     console.log("Player hand");
 
     playerHand[0] = playerCard1;
-    revealCard(playerCard1);
+    revealCard(playerCard1, "playerCard1");
     playerHand[1] = playerCard2;
+    revealCard(playerCard2, "playerCard2");
+
 
     dealerHand[0] = dealerCard1;
+    revealCard(dealerCard1, "dealerCard1");
+
     dealerHand[1] = dealerCard2;
+    revealCard(dealerCard2, "dealerCard2");
+
 
     console.log(playerCard1.suit + " " + playerCard1.value);
     
@@ -317,10 +323,88 @@ function gamePlay(){
     
 
 }
-
-function revealCard(card){
+//NEEDS CONDENSING, NEED TO ADD J,Q,K LOGIC
+function revealCard(card, id){
     if(card.value == 1 && card.suit == "spade"){
-        document.getElementById("test").src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Aceofspades.svg/1200px-Aceofspades.svg.png";
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Aceofspades.svg/1200px-Aceofspades.svg.png";
+    }else if(card.value == 1 && card.suit == "club"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/3/38/Poker-sm-241-Ac.png";
+    }else if(card.value == 1 && card.suit == "heart"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Poker-sm-221-Ah.png";
+    }else if(card.value == 1 && card.suit == "diamond"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/b/be/Poker-sm-231-Ad.png";
+    }else if(card.value == 2 && card.suit == "spade"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/2_of_spades.svg/706px-2_of_spades.svg.png";
+    }else if(card.value == 2 && card.suit == "club"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/2_of_clubs.svg/1200px-2_of_clubs.svg.png";
+    }else if(card.value == 2 && card.suit == "heart"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/2_of_hearts.svg/1200px-2_of_hearts.svg.png";
+    }else if(card.value == 2 && card.suit == "diamond"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Playing_card_diamond_2.svg/1200px-Playing_card_diamond_2.svg.png";
+    }else if(card.value == 3 && card.suit == "spade"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Playing_card_spade_3.svg/1200px-Playing_card_spade_3.svg.png";
+    }else if(card.value == 3 && card.suit == "club"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Playing_card_club_3.svg/819px-Playing_card_club_3.svg.png";
+    }else if(card.value == 3 && card.suit == "heart"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Playing_card_heart_3.svg/819px-Playing_card_heart_3.svg.png";
+    }else if(card.value == 3 && card.suit == "diamond"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Playing_card_diamond_3.svg/1200px-Playing_card_diamond_3.svg.png";
+    }else if(card.value == 4 && card.suit == "spade"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Playing_card_spade_4.svg/1200px-Playing_card_spade_4.svg.png";
+    }else if(card.value == 4 && card.suit == "club"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Playing_card_club_4.svg/819px-Playing_card_club_4.svg.png";
+    }else if(card.value == 4 && card.suit == "heart"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Playing_card_heart_4.svg/1200px-Playing_card_heart_4.svg.png";
+    }else if(card.value == 4 && card.suit == "diamond"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/4_of_diamonds.svg/1200px-4_of_diamonds.svg.png";
+    }else if(card.value == 5 && card.suit == "spade"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Playing_card_spade_5.svg/1200px-Playing_card_spade_5.svg.png";
+    }else if(card.value == 5 && card.suit == "club"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Playing_card_club_5.svg/1200px-Playing_card_club_5.svg.png";
+    }else if(card.value == 5 && card.suit == "heart"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Playing_card_heart_5.svg/1200px-Playing_card_heart_5.svg.png";
+    }else if(card.value == 5 && card.suit == "diamond"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Playing_card_diamond_5.svg/1200px-Playing_card_diamond_5.svg.png";
+    }else if(card.value == 6 && card.suit == "spade"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Playing_card_spade_6.svg/1200px-Playing_card_spade_6.svg.png";
+    }else if(card.value == 6 && card.suit == "club"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Playing_card_club_6.svg/1200px-Playing_card_club_6.svg.png";
+    }else if(card.value == 6 && card.suit == "heart"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Playing_card_heart_6.svg/1200px-Playing_card_heart_6.svg.png";
+    }else if(card.value == 6 && card.suit == "diamond"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Playing_card_diamond_6.svg/819px-Playing_card_diamond_6.svg.png";
+    }else if(card.value == 7 && card.suit == "spade"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Playing_card_spade_7.svg/1200px-Playing_card_spade_7.svg.png";
+    }else if(card.value == 7 && card.suit == "club"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Playing_card_club_7.svg/1200px-Playing_card_club_7.svg.png";
+    }else if(card.value == 7 && card.suit == "heart"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/7_of_hearts.svg/1200px-7_of_hearts.svg.png";
+    }else if(card.value == 7 && card.suit == "diamond"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/7_of_diamonds.svg/1200px-7_of_diamonds.svg.png";
+    }else if(card.value == 8 && card.suit == "spade"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/8_of_spades.svg/1200px-8_of_spades.svg.png";
+    }else if(card.value == 8 && card.suit == "club"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Playing_card_club_8.svg/1200px-Playing_card_club_8.svg.png";
+    }else if(card.value == 8 && card.suit == "heart"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Playing_card_heart_8.svg/1200px-Playing_card_heart_8.svg.png";
+    }else if(card.value == 8 && card.suit == "diamond"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Playing_card_diamond_8.svg/1200px-Playing_card_diamond_8.svg.png";
+    }else if(card.value == 9 && card.suit == "spade"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Playing_card_spade_9.svg/1200px-Playing_card_spade_9.svg.png";
+    }else if(card.value == 9 && card.suit == "club"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Playing_card_club_9.svg/819px-Playing_card_club_9.svg.png";
+    }else if(card.value == 9 && card.suit == "heart"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Playing_card_heart_9.svg/1638px-Playing_card_heart_9.svg.png";
+    }else if(card.value == 9 && card.suit == "diamond"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Playing_card_diamond_9.svg/1200px-Playing_card_diamond_9.svg.png";
+    }else if(card.value == 10 && card.suit == "spade"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/10_of_spades.svg/1200px-10_of_spades.svg.png";
+    }else if(card.value == 10 && card.suit == "club"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Playing_card_club_10.svg/1200px-Playing_card_club_10.svg.png";
+    }else if(card.value == 10 && card.suit == "heart"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Playing_card_heart_10.svg/1200px-Playing_card_heart_10.svg.png";
+    }else if(card.value == 10 && card.suit == "diamond"){
+        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Playing_card_diamond_10.svg/819px-Playing_card_diamond_10.svg.png";
     }
 }
 

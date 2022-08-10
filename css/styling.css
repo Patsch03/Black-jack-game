@@ -74,4 +74,23 @@
     margin: 30px 30px 30px 30px;
 }
 
+#playerCard1{
+    width: 300px;
+    height: 350px;
+}
+#playerCard2{
+    width: 300px;
+    height: 350px;
+}
+#dealerCard1{
+    width: 300px;
+    height: 350px;
+}
+#dealerCard2{
+    width: 300px;
+    height: 350px;
+}
+
+
+
 
