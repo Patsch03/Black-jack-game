@@ -14,7 +14,6 @@
 
 
 #pCard1{
-    border: 3px solid black;
     position: relative;
     height: 350px;
     width: 300px;
@@ -24,17 +23,15 @@
 }
 
 #pCard2{
-    border: 3px solid black;
     position: relative;
     height: 350px;
     width: 300px;
-    top: 17.3%;
+    top: 18%;
     left: 55%;
 
 }
 
 #dCard1{
-    border: 3px solid black;
     position: relative;
     height: 350px;
     width: 300px;
@@ -43,7 +40,6 @@
 }
 
 #dCard2{
-    border: 3px solid black;
     position: relative;
     height: 350px;
     width: 300px;
@@ -236,6 +232,7 @@
     top: 65%;
     color:antiquewhite;
     background-color: black;
+    font-size: 40px;
 }
 
 #dealerScore{
@@ -243,8 +240,22 @@
     top: 5%;
     color:antiquewhite; 
     background-color: black;
+    font-size: 40px;
+}
+#winLossMSG{
+    position: absolute;
+    top: 35%;
+    color:antiquewhite; 
+    background-color: black;
+    font-size: 40px;
 }
 
+#reset{
+    position: relative;
+    top: -50%;
+    left: 50%;
+
+}
 
 
 
