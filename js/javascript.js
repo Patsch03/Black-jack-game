@@ -1,11 +1,20 @@
-
+//to do list
+// add j q k a too display 
+// change console win messages into regular display messages so the user can see them
+// make sure game works 100% correctly - bugfix 
+// make so cant hit on blackjack (bugfix)
+// extra - gambling points, split, actual deck that cards are pulled from (shoe implemetation), side bets
+// make random number generator 1-4, 1 = j 2 = q 3 = k 4 = 10 and add to infinite if statements.
 
 
 let handCards = 2;
 let dealerCards = 2;
 let x = 1;
 let y = 1;
+let randomNum = 0;
 
+randomNum = Math.floor(Math.random() * (4 - 1 + 1) + 1);
+console.log(randomNum);
 
 
 
@@ -420,18 +429,48 @@ function revealCard(card, id){
         document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Playing_card_heart_9.svg/1638px-Playing_card_heart_9.svg.png";
     }else if(card.value == 9 && card.suit == "diamond"){
         document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Playing_card_diamond_9.svg/1200px-Playing_card_diamond_9.svg.png";
-    }else if(card.value == 10 && card.suit == "spade"){
-        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/10_of_spades.svg/1200px-10_of_spades.svg.png";
-    }else if(card.value == 10 && card.suit == "club"){
-        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Playing_card_club_10.svg/1200px-Playing_card_club_10.svg.png";
-    }else if(card.value == 10 && card.suit == "heart"){
-        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Playing_card_heart_10.svg/1200px-Playing_card_heart_10.svg.png";
-    }else if(card.value == 10 && card.suit == "diamond"){
-        document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Playing_card_diamond_10.svg/819px-Playing_card_diamond_10.svg.png";
+    }else if(card.value == 10 && randomNum == 1){
+        if(card.suit == "spade"){
+            document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/English_pattern_jack_of_spades.svg/360px-English_pattern_jack_of_spades.svg.png";
+        }else if(card.suit == "club"){
+            document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Jack_of_clubs2.svg/1200px-Jack_of_clubs2.svg.png";
+        }else if(card.suit == "heart"){
+            document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/English_pattern_jack_of_hearts.svg/1200px-English_pattern_jack_of_hearts.svg.png";
+        }else if(card.suit == "diamond"){
+            document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/1/16/English_pattern_jack_of_diamonds.svg";
+        }
+    }else if(card.value == 10 && randomNum == 2){
+        if(card.suit == "spade"){
+            document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/c/ca/English_pattern_queen_of_spades.svg";
+        }else if(card.suit == "club"){
+            document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/English_pattern_queen_of_clubs.svg/1200px-English_pattern_queen_of_clubs.svg.png";
+        }else if(card.suit == "heart"){
+            document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Queen_of_Hearts_%28Elizabeth_of_York%29.png/640px-Queen_of_Hearts_%28Elizabeth_of_York%29.png";
+        }else if(card.suit == "diamond"){
+            document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/English_pattern_queen_of_diamonds.svg/1200px-English_pattern_queen_of_diamonds.svg.png";
+        }
+    }else if(card.value == 10 && randomNum == 3){
+        if(card.suit == "spade"){
+            document.getElementById(id).src = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/English_pattern_king_of_spades.svg/1200px-English_pattern_king_of_spades.svg.png";
+        }else if(card.suit == "club"){
+            document.getElementById(id).src = "https://upload.wikimedia.org/wikipedia/commons/2/25/Poker-sm-242-Kc.png";
+        }else if(card.suit == "heart"){
+            document.getElementById(id).src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/English_pattern_king_of_hearts.svg/1200px-English_pattern_king_of_hearts.svg.png";
+        }else if(card.suit == "diamond"){
+            document.getElementById(id).src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/English_pattern_king_of_diamonds.svg/1200px-English_pattern_king_of_diamonds.svg.png";
+        }
+    }else if(card.value == 10 && randomNum == 4){
+        if(card.suit == "spade"){
+            document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/10_of_spades.svg/1200px-10_of_spades.svg.png";
+        }else if(card.suit == "club"){
+            document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Playing_card_club_10.svg/1200px-Playing_card_club_10.svg.png";
+        }else if(card.suit == "heart"){
+            document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Playing_card_heart_10.svg/1200px-Playing_card_heart_10.svg.png";
+        }else if(card.suit == "diamond"){
+            document.getElementById(id).src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Playing_card_diamond_10.svg/819px-Playing_card_diamond_10.svg.png";
+        }
     }
 }
 
 //RUNS INITIALIZATION.
 gamePlay();
-
-
