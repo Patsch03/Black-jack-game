@@ -1,5 +1,11 @@
+
+
+
 let handCards = 2;
 let dealerCards = 2;
+let x = 1;
+let y = 1;
+
 
 
 
@@ -74,7 +80,7 @@ function gameStart(){
     revealCard(dealerCard1, "dealerCard1");
 
     dealerHand[1] = dealerCard2;
-    revealCard(dealerCard2, "dealerCard2");
+    document.getElementById("dealerCard2").src="https://media.istockphoto.com/photos/bicycle-rider-back-playing-card-design-picture-id157772536?k=20&m=157772536&s=170667a&w=0&h=46bM0a2wuwcddiOzNOHTfS9PcUzjXwNTTCy33SrkC_0="
 
 
     console.log(playerCard1.suit + " " + playerCard1.value);
@@ -87,6 +93,9 @@ function gameStart(){
 
     console.log(dealerCard2.suit + " " + dealerCard2.value);
     console.log(dealerHandValue());
+
+    document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
+    document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerCard1.value}`;
 
 }
 
@@ -105,6 +114,8 @@ function hit(){
     playerHand[handCards] = new card; // adds new card to player hand array
     console.log(playerHand[handCards].suit + " " + playerHand[handCards].value) // shows player card
     console.log("New player hand value" + " " + playerHandValue()); // prints new value with new card added
+    revealCard(playerHand[handCards], `hit${x}img`);
+    x = x + 1;
     handCards += 1; // increases the index at playerHand so if player hits again it has proper memory allocated
     if(playerHandValue() > 21){
         buttonStop();
@@ -112,6 +123,10 @@ function hit(){
     }else if(playerHandValue() == 21){
         stand();
     }
+    document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
+
+
+    
     
 }
 
@@ -141,6 +156,7 @@ function stand(){
     }else{
         dealerPlay();
     }
+    document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
 }
 
 //CHECKS TO SEE WHO WON
@@ -226,7 +242,10 @@ function checkWin(){
 function double(){
     hit();
     stand();
-    buttonStop();
+    buttonStop(); // fix
+    dealerPlay();
+    document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
+
 }
 
 //RETURNS THE VALUE OF THE PLAYERS CARDS
@@ -295,6 +314,9 @@ function dealerHandValue(){
 
 //LOGIC FOR DEALER "AI"
 function dealerPlay(){
+    revealCard(dealerCard2, "dealerCard2");
+    document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
+
     if(dealerHandValue().toString().includes("/")){
         let fullRet = dealerHandValue();
         let secNum = fullRet.substring(fullRet.indexOf("/") + 2); 
@@ -312,7 +334,10 @@ function dealerPlay(){
         console.log(dealerHand[dealerCards].suit + " " + dealerHand[dealerCards].value);
         dealerHandValue();
         console.log("Dealer hand value " + dealerHandValue());
+        revealCard(dealerHand[dealerCards], `hit${y}Dimg`);
+        y += 1;
         dealerCards += 1;
+        document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
     }
     checkWin();
 }
@@ -320,8 +345,6 @@ function dealerPlay(){
 //INTIIALIZES FIRST TWO CARDS
 function gamePlay(){
     gameStart();
-    
-
 }
 //NEEDS CONDENSING, NEED TO ADD J,Q,K LOGIC
 function revealCard(card, id){

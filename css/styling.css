@@ -13,7 +13,6 @@
 }
 
 
-
 #pCard1{
     border: 3px solid black;
     position: relative;
@@ -22,13 +21,6 @@
     top: 55%;
     left: 30%;
     overflow: auto;
-}
-
-.pCard1Img{
-    position: absolute;
-    height: 350px;
-    width: 300px;
-
 }
 
 #pCard2{
@@ -59,20 +51,168 @@
     left: 30%;
 }
 
-.suits{
-    background-color: blue;
+#hit1{
+    border: 3px solid black;
     position: relative;
-    height: 50px;
-    width: 50px;
-    margin: 50px 20px 20px 20px;
+    height: 150px;
+    width: 100px;
+    top: -95%;
+    left: 75%;  
 }
 
-.column{
+#hit2{
+    border: 3px solid black;
     position: relative;
-    background-color: red;
-    display: inline-block;
-    margin: 30px 30px 30px 30px;
+    height: 150px;
+    width: 100px;
+    top: -92%;
+    left: 75%; 
 }
+
+#hit3{
+    border: 3px solid black;
+    position: relative;
+    height: 150px;
+    width: 100px;
+    top: -128%;
+    left: 83%;   
+}
+
+#hit4{
+    border: 3px solid black;
+    position: relative;
+    height: 150px;
+    width: 100px;
+    top: -124.8%;
+    left: 83%; 
+}
+
+#hit5{
+    border: 3px solid black;
+    position: relative;
+    height: 150px;
+    width: 100px;
+    top: -160.8%;
+    left: 91%;   
+}
+
+#hit6{
+    border: 3px solid black;
+    position: relative;
+    height: 150px;
+    width: 100px;
+    top: -157.6%;
+    left: 91%; 
+}
+
+
+#hit1D{
+    border: 3px solid black;
+    position: relative;
+    height: 150px;
+    width: 100px;
+    top: -250.5%;
+    left: 75%;  
+}
+
+#hit2D{
+    border: 3px solid black;
+    position: relative;
+    height: 150px;
+    width: 100px;
+    top: -247.5%;
+    left: 75%; 
+}
+
+#hit3D{
+    border: 3px solid black;
+    position: relative;
+    height: 150px;
+    width: 100px;
+    top: -283.5%;
+    left: 83%;   
+}
+
+#hit4D{
+    border: 3px solid black;
+    position: relative;
+    height: 150px;
+    width: 100px;
+    top: -280.3%;
+    left: 83%; 
+}
+
+#hit5D{
+    border: 3px solid black;
+    position: relative;
+    height: 150px;
+    width: 100px;
+    top: -316.3%;
+    left: 91%;   
+}
+
+#hit6D{
+    border: 3px solid black;
+    position: relative;
+    height: 150px;
+    width: 100px;
+    top: -313.1%;
+    left: 91%; 
+}
+
+#hit1Dimg{
+    height: 150px;
+    width: 100px;
+}
+#hit2Dimg{
+    height: 150px;
+    width: 100px;
+}
+#hit3Dimg{
+    height: 150px;
+    width: 100px;
+}
+#hit4Dimg{
+    height: 150px;
+    width: 100px;
+}
+#hit5Dimg{
+    height: 150px;
+    width: 100px;
+}
+#hit6Dimg{
+    height: 150px;
+    width: 100px;
+}
+
+
+
+#hit1img{
+    height: 150px;
+    width: 100px;
+}
+#hit2img{
+    height: 150px;
+    width: 100px;
+}
+#hit3img{
+    height: 150px;
+    width: 100px;
+}
+#hit4img{
+    height: 150px;
+    width: 100px;
+}
+#hit5img{
+    height: 150px;
+    width: 100px;
+}
+#hit6img{
+    height: 150px;
+    width: 100px;
+}
+
+
 
 #playerCard1{
     width: 300px;
@@ -89,6 +229,20 @@
 #dealerCard2{
     width: 300px;
     height: 350px;
+}
+
+#playerScore{
+    position: absolute;
+    top: 65%;
+    color:antiquewhite;
+    background-color: black;
+}
+
+#dealerScore{
+    position: absolute;
+    top: 5%;
+    color:antiquewhite; 
+    background-color: black;
 }
 
 
