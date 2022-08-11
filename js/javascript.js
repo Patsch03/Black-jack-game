@@ -16,7 +16,6 @@ let y = 1;
 let randomNum = 0;
 
 randomNum = Math.floor(Math.random() * (4 - 1 + 1) + 1);
-console.log(randomNum);
 
 
 
@@ -79,7 +78,6 @@ let playerHand = [];
 //ADDS CARD 1 AND CARD 2 INTO PLAYER AND DEALER HAND
 function gameStart(){
 
-    console.log("Player hand");
 
     playerHand[0] = playerCard1;
     revealCard(playerCard1, "playerCard1");
@@ -92,19 +90,6 @@ function gameStart(){
 
     dealerHand[1] = dealerCard2;
     document.getElementById("dealerCard2").src="https://media.istockphoto.com/photos/bicycle-rider-back-playing-card-design-picture-id157772536?k=20&m=157772536&s=170667a&w=0&h=46bM0a2wuwcddiOzNOHTfS9PcUzjXwNTTCy33SrkC_0="
-
-
-    console.log(playerCard1.suit + " " + playerCard1.value);
-    
-    console.log(playerCard2.suit + " " + playerCard2.value);
-    console.log(playerHandValue());
-
-    console.log("Dealer hand");
-    console.log(dealerCard1.suit + " " + dealerCard1.value);
-
-    console.log(dealerCard2.suit + " " + dealerCard2.value);
-    console.log(dealerHandValue());
-
     document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
 
 
@@ -157,8 +142,6 @@ function gameStart(){
 //ADDS CARD TO PLAYER HAND AND CONSOLE LOGS IT, CHECKS TOO SEE IF THE PLAYERHAND BUSTS OR IF PLAYERHAND = 21 AND REMOVES EVENTLISTENER ON BUTTONS
 function hit(){
     playerHand[handCards] = new card; // adds new card to player hand array
-    console.log(playerHand[handCards].suit + " " + playerHand[handCards].value) // shows player card
-    console.log("New player hand value" + " " + playerHandValue()); // prints new value with new card added
     revealCard(playerHand[handCards], `hit${x}img`);
     x = x + 1;
     handCards += 1; // increases the index at playerHand so if player hits again it has proper memory allocated
@@ -167,7 +150,6 @@ function hit(){
         document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
         revealCard(dealerCard2, "dealerCard2");
         document.getElementById("seperateMSG").style.display = "block";
-        console.log("we here");
         document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
         // dealerPlay();
     }else if(playerHandValue() == 21){
@@ -197,8 +179,8 @@ function buttonStop(){
 function stand(){
     buttonStop();
     if(playerHandValue() > 21){
-        console.log("Player loses");
         document.getElementById("winLossMSG").innerHTML = "Player loses";
+        
         document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
         dealerPlay();
     }else{
@@ -219,51 +201,56 @@ function checkWin(){
         let compValP = parseInt(playHand2Val);
 
         if(compValP < 21 && compValP > compValD){
-            console.log("Player wins");
             document.getElementById("winLossMSG").innerHTML = "Player Wins";
-            dealerPlay();
-        }else if(compValP < 21 && compValP < compValD){
-            document.getElementById("winLossMSG").innerHTML = "Dealer Wins";
-            dealerPlay();
-        }else if(compValP == compValD){
-            document.getElementById("winLossMSG").innerHTML = "Push";
-            dealerPlay();
+            console.log("player wins");
+
+            // dealerPlay();
+        }else if(compValP < 21 && compValP < compValD && compValD < 21){
+            document.getElementById("winLossMSG").innerHTML = "Player loses";
+            console.log("player loses");
+
+            // dealerPlay();
+        }else if(compValD > 21 && compValP < 21){
+            document.getElementById("winLossMSG").innerHTML = "Player Wins";
+            console.log("player wins");
+
         }
     }
     if(dealerHandValue().toString().includes("/")){
         let dealT = dealerHandValue();
         const afterSl = dealT.substring(dealT.indexOf("/") + 2);
         let dealAce = parseInt(afterSl);
-        console.log(dealAce);
-        if(dealAce <= 21 && dealAce > 16){
-            if(dealAce > playerHandValue()){
-                console.log("dealer wins");
-                document.getElementById("winLossMSG").innerHTML = "Player loses!";
 
-            }else if(dealAce < playerHandValue()){
-                console.log("player wins");
+        if(dealAce <= 21){
+            if(dealAce > playerHandValue()){
+                document.getElementById("winLossMSG").innerHTML = "Player loses!";
+                console.log("player loses");
+
+
+            }else if(dealAce < playerHandValue() && playerHandValue() <= 21){
                 document.getElementById("winLossMSG").innerHTML = "Player Wins!";
+                console.log("player wins");
+
 
             }else if(dealAce == playerHandValue()){
-                console.log("push");
                 document.getElementById("winLossMSG").innerHTML = "Push";
+                console.log("push");
 
             }
         }else{
             if(dealerHandValue() > 21){
-                console.log("Dealer busts");
                 document.getElementById("winLossMSG").innerHTML = "Player Wins!";
+                console.log("player wins");
 
             }else if(dealerHandValue() > playerHandValue()){
-                console.log("dealer wins");
                 document.getElementById("winLossMSG").innerHTML = "Player loses";
+                console.log("player loses");
 
             }else if(dealerHandValue() < playerHandValue()){
-                console.log("player wins");
                 document.getElementById("winLossMSG").innerHTML = "Player Wins";
+                console.log("player wins");
 
             }else if(dealerHandValue() == playerHandValue()){
-                console.log("push");
                 document.getElementById("winLossMSG").innerHTML = "Push";
 
             }
@@ -274,47 +261,49 @@ function checkWin(){
         let thing = playerHandValue();
         const afterS = thing.substring(thing.indexOf("/") + 2);
         let aceVal = parseInt(afterS);
+
             if(aceVal > 21){
-                console.log("Player loses!")
-                document.getElementById("winLossMSG").innerHTML = "Player loses!";
-            }else if(dealerHandValue() > 21){
-                console.log("Dealer busts, player wins!");     
+                // document.getElementById("winLossMSG").innerHTML = "Player loses!";
+            }else if(dealerHandValue() > 21 && (aceVal <= 21 || playerHandValue() <= 21)){
                 document.getElementById("winLossMSG").innerHTML = "Player wins!";
-            }else if((21 - aceVal) < (21 - dealerHandValue())){      
-                console.log("Player wins!"); 
-                document.getElementById("winLossMSG").innerHTML = "Player wins!";
-            }else if((21 - aceVal) > (21 - dealerHandValue())){
-                console.log("Dealer won!");
+                console.log("player wins");
+
+            }else if(aceVal < dealerHandValue()){      
                 document.getElementById("winLossMSG").innerHTML = "Player loses!";
+                console.log("player loses");
+
+            }else if(aceVal > dealerHandValue()){
+                document.getElementById("winLossMSG").innerHTML = "Player wins!";
+                console.log("player wins");
+
             }else if(aceVal == dealerHandValue()){
-                console.log("Push");
                 document.getElementById("winLossMSG").innerHTML = "Push";
 
             }
     }else{
         if(playerHandValue() > 21){
-            console.log("Player loses!");
             document.getElementById("winLossMSG").innerHTML = "Player loses";
             document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
+            console.log("player loses");
 
-        }else if(dealerHandValue() > 21){
-            console.log("Dealer busts, player wins!");
+
+        }else if(dealerHandValue() > 21 && playerHandValue() <= 21 ){
             document.getElementById("winLossMSG").innerHTML = "Player wins";
-
-        }else if((21 - playerHandValue()) < (21 - dealerHandValue())){
-            console.log("Player wins!");
-            document.getElementById("winLossMSG").innerHTML = "Player wins";
-
-        }else if((21 - playerHandValue()) > (21 - dealerHandValue())){
-            console.log("Dealer won!");
+            console.log("player wins");
+        }else if(playerHandValue() < dealerHandValue()){
             document.getElementById("winLossMSG").innerHTML = "Player loses";
-
+            console.log("player loses");
+        }else if(playerHandValue() > dealerHandValue()){
+            document.getElementById("winLossMSG").innerHTML = "Player wins";
+            console.log("player loses");
         }else if(playerHandValue() == dealerHandValue()){
-            console.log("Push");
             document.getElementById("winLossMSG").innerHTML = "Push";
+            console.log("push");
 
         }else if(playerHandValue() == 21){
-            dealerPlay();
+            // dealerPlay();
+        }else if(playerHandValue() > dealerHandValue()){
+            document.getElementById("winLossMSG").innerHTML = "Player wins";
         }
     }
 }
@@ -419,9 +408,7 @@ function dealerPlay(){
         
         while( checkVal <= 16 || fullRet <= 16){
             dealerHand[dealerCards] = new card;
-            console.log(dealerHand[dealerCards].suit + " " + dealerHand[dealerCards].value);
             dealerHandValue();
-            console.log("Dealer hand value " + dealerHandValue());
             document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue().value}`;
             revealCard(dealerHand[dealerCards], `hit${y}Dimg`);
             checkVal = checkVal + dealerHand[dealerCards].value;
@@ -435,9 +422,7 @@ function dealerPlay(){
     while(dealerHandValue() <= 16){
         
         dealerHand[dealerCards] = new card;
-        console.log(dealerHand[dealerCards].suit + " " + dealerHand[dealerCards].value);
         dealerHandValue();
-        console.log("Dealer hand value " + dealerHandValue());
         document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue().value}`;
         revealCard(dealerHand[dealerCards], `hit${y}Dimg`);
         y += 1;
@@ -449,6 +434,7 @@ function dealerPlay(){
 
     document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
 
+    checkWin();
 }
 
 //INTIIALIZES FIRST TWO CARDS
@@ -587,9 +573,6 @@ function resetGame(){
 
     playerHand = [];
     dealerHand = [];
-    console.log(playerHand);
-    console.log(dealerHand);
-
     playerCard1 = new card();
     playerCard2 = new card();
 
@@ -623,4 +606,3 @@ function resetGame(){
 //RUNS INITIALIZATION.
 gamePlay();
 
-checkWin();
