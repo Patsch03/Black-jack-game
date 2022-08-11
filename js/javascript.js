@@ -59,10 +59,6 @@ class card{
         }
         
     }
-
-    getValue(){
-        return this.value;
-    }
 }
 
 let playerCard1 = new card();
@@ -105,6 +101,8 @@ function gameStart(){
     console.log(dealerHandValue());
 
     document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
+    // document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
+
 
     if(playerHandValue().toString().includes("/")){
         let secondH = playerHandValue().toString();
@@ -163,16 +161,19 @@ function hit(){
     if(playerHandValue() > 21){
         buttonStop();
         document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
-        dealerPlay();
+        revealCard(dealerCard2, "dealerCard2");
+        document.getElementById("winLossMSG").innerText = "Player busts";
+        console.log("we here");
+        document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
+        // dealerPlay();
     }else if(playerHandValue() == 21){
         buttonStop();
         stand();
         dealerPlay();
     }
     document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
+    // document.getElementById("dealerScore").innerHTML = `Player Score: ${dealerHandValue()}`;
 
-
-    
     
 }
 
@@ -186,10 +187,6 @@ function buttonStop(){
 
     const doubleButR = document.getElementById("Double");
     doubleButR.removeEventListener('click', double);
-
-
-
-    
     
 }
 
@@ -212,7 +209,6 @@ function stand(){
 
 //CHECKS TO SEE WHO WON
 function checkWin(){
-
     if(dealerHandValue().toString().includes("/") && playerHandValue().toString().includes("/")){
         let dealHand2 = dealerHandValue();
         const dealHand2Val = dealHand2.substring(dealHand2.indexOf("/") + 2);
@@ -276,8 +272,6 @@ function checkWin(){
         let thing = playerHandValue();
         const afterS = thing.substring(thing.indexOf("/") + 2);
         let aceVal = parseInt(afterS);
-
-        
             if(aceVal > 21){
                 console.log("Player loses!")
                 document.getElementById("winLossMSG").innerHTML = "Player loses!";
@@ -295,15 +289,12 @@ function checkWin(){
                 document.getElementById("winLossMSG").innerHTML = "Push";
 
             }
-        
-
-
     }else{
         if(playerHandValue() > 21){
-            console.log("Player loses!")
+            console.log("Player loses!");
             document.getElementById("winLossMSG").innerHTML = "Player loses";
             document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
-            dealerPlay();
+
         }else if(dealerHandValue() > 21){
             console.log("Dealer busts, player wins!");
             document.getElementById("winLossMSG").innerHTML = "Player wins";
@@ -324,10 +315,6 @@ function checkWin(){
             dealerPlay();
         }
     }
-
-
-    
-    
 }
 
 function double(){
@@ -437,8 +424,11 @@ function dealerPlay(){
         document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
     }
     document.getElementById("winLossMSG").style.display = "block";
+    document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
 
     checkWin();
+    document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
+
 }
 
 //INTIIALIZES FIRST TWO CARDS
@@ -563,6 +553,14 @@ function revealCard(card, id){
 }
 
 function resetGame(){
+    handCards = 2;
+    dealerCards = 2;
+    x = 1;
+    y = 1;
+
+    document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
+    document.getElementById("dealerScore").innerHTML = `Dealer Score: `;
+    document.getElementById("winLossMSG").style.display = "none";
 
     playerHand = [];
     dealerHand = [];
@@ -575,6 +573,28 @@ function resetGame(){
     dealerCard1 = new card();
     dealerCard2 = new card();
     gamePlay();
+
+    const standBut = document.getElementById("Stand");
+    standBut.addEventListener('click', stand);
+
+    const hitBut = document.getElementById('Hit');
+    hitBut.addEventListener('click', hit);// checks for button being hit 
+
+    const doubleBut = document.getElementById("Double");
+    doubleBut.addEventListener('click', double);
+
+    const resetBut = document.getElementById("reset");
+    resetBut.addEventListener('click', resetGame);
+
+    for(let i = 1; i < 7; i++){
+        document.getElementById(`hit${i}img`).src = "";
+    }
+
+    for(let i = 1; i < 7; i++){
+        document.getElementById(`hit${i}Dimg`).src = "";
+    }
+ 
+
 }
 
 //RUNS INITIALIZATION.
