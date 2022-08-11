@@ -257,5 +257,29 @@
 
 }
 
+#seperateMSG{
+    position: absolute;
+    top: 35%;
+    color:antiquewhite; 
+    background-color: black;
+    font-size: 40px;
+}
+
+#dealerBJ{
+    position: absolute;
+    top: 35%;
+    color:antiquewhite; 
+    background-color: black;
+    font-size: 40px;
+}
+
+#bjTie{
+    position: absolute;
+    top: 35%;
+    color:antiquewhite; 
+    background-color: black;
+    font-size: 40px;
+}
+
 
 

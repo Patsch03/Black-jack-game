@@ -1,11 +1,14 @@
 //to do list
-// make sure that reset clears player and dealers whole hand
-
-
-// make sure game works 100% correctly - bugfix 
 // extra - gambling points, split, actual deck that cards are pulled from (shoe implemetation), side bets
 
+document.getElementById("seperateMSG").style.display = "none";
+
 document.getElementById("winLossMSG").style.display = "none";
+
+document.getElementById("dealerBJ").style.display = "none";
+
+document.getElementById("bjTie").style.display = "none";
+
 let handCards = 2;
 let dealerCards = 2;
 let x = 1;
@@ -37,7 +40,7 @@ class card{
 
         let valuePick = Math.random();
         if(valuePick <= 0.0692307692){
-            this.value = 1; // ace needs implementation
+            this.value = 1; 
         }else if(valuePick <= 0.15384615384){
             this.value = 2;
         }else if(valuePick <= 0.23076923076){
@@ -59,6 +62,8 @@ class card{
         }
         
     }
+
+
 }
 
 let playerCard1 = new card();
@@ -101,7 +106,6 @@ function gameStart(){
     console.log(dealerHandValue());
 
     document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
-    // document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
 
 
     if(playerHandValue().toString().includes("/")){
@@ -162,7 +166,7 @@ function hit(){
         buttonStop();
         document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
         revealCard(dealerCard2, "dealerCard2");
-        document.getElementById("winLossMSG").innerText = "Player busts";
+        document.getElementById("seperateMSG").style.display = "block";
         console.log("we here");
         document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
         // dealerPlay();
@@ -172,9 +176,6 @@ function hit(){
         dealerPlay();
     }
     document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
-    // document.getElementById("dealerScore").innerHTML = `Player Score: ${dealerHandValue()}`;
-
-    
 }
 
 //LOGIC FOR STOPPING BUTTONS
@@ -195,7 +196,6 @@ function buttonStop(){
 //STAND LOGIC, ALSO STARTS DEALER "AI"
 function stand(){
     buttonStop();
-    // checkWin();
     if(playerHandValue() > 21){
         console.log("Player loses");
         document.getElementById("winLossMSG").innerHTML = "Player loses";
@@ -223,8 +223,10 @@ function checkWin(){
             document.getElementById("winLossMSG").innerHTML = "Player Wins";
             dealerPlay();
         }else if(compValP < 21 && compValP < compValD){
+            document.getElementById("winLossMSG").innerHTML = "Dealer Wins";
             dealerPlay();
         }else if(compValP == compValD){
+            document.getElementById("winLossMSG").innerHTML = "Push";
             dealerPlay();
         }
     }
@@ -320,7 +322,7 @@ function checkWin(){
 function double(){
     hit();
     stand();
-    buttonStop(); // fix
+    buttonStop();
     dealerPlay();
     document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
 
@@ -363,6 +365,7 @@ function dealerHandValue(){
     let sum = 0;
     let sumAce = 0;
     let bool = false;
+
     for(let i = 0; i < dealerHand.length; i++){
         if(dealerHand[i].value == 1){
             sumAce += 11;
@@ -399,6 +402,21 @@ function dealerPlay(){
         let fullRet = dealerHandValue();
         let secNum = fullRet.substring(fullRet.indexOf("/") + 2);
         let checkVal = parseInt(secNum);
+        if(playerHandValue().toString().includes("/")){
+            let fullRetP = playerHandValue();
+            let secNumP = fullRetP.substring(fullRetP.indexOf("/") + 2);
+            let checkValP = parseInt(secNumP);
+            if(checkVal == 21 && checkValP == 21){
+                document.getElementById("bjTie").style.display = "block";
+            }
+        }
+
+
+
+        if(checkVal == 21){
+            document.getElementById("dealerBJ").style.display = "block";
+        }
+        
         while( checkVal <= 16 || fullRet <= 16){
             dealerHand[dealerCards] = new card;
             console.log(dealerHand[dealerCards].suit + " " + dealerHand[dealerCards].value);
@@ -408,11 +426,14 @@ function dealerPlay(){
             revealCard(dealerHand[dealerCards], `hit${y}Dimg`);
             checkVal = checkVal + dealerHand[dealerCards].value;
             dealerCards += 1;
+            y += 1;
             
         }
-        checkWin();
     }
+
+    y = 1;
     while(dealerHandValue() <= 16){
+        
         dealerHand[dealerCards] = new card;
         console.log(dealerHand[dealerCards].suit + " " + dealerHand[dealerCards].value);
         dealerHandValue();
@@ -426,7 +447,6 @@ function dealerPlay(){
     document.getElementById("winLossMSG").style.display = "block";
     document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
 
-    checkWin();
     document.getElementById("dealerScore").innerHTML = `Dealer Score: ${dealerHandValue()}`;
 
 }
@@ -558,9 +578,12 @@ function resetGame(){
     x = 1;
     y = 1;
 
+    document.getElementById("seperateMSG").style.display = "none";
     document.getElementById("playerScore").innerHTML = `Player Score: ${playerHandValue()}`;
     document.getElementById("dealerScore").innerHTML = `Dealer Score: `;
     document.getElementById("winLossMSG").style.display = "none";
+    document.getElementById("bjTie").style.display = "none";
+    document.getElementById("dealerBJ").style.display = "none";
 
     playerHand = [];
     dealerHand = [];
